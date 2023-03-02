@@ -9,10 +9,12 @@ export class AuthComponent {
     username?: string;
     password?: string;
     errorMessage?: string;
+
     constructor(
         private router: Router,
         private auth: AuthService
     ) { }
+    
     authenticate(form: NgForm) {
         if (form.valid) {
             this.auth.authenticate(this.username ?? "", this.password ?? "")

@@ -31,6 +31,11 @@ export class RestDataSource {
         return this.http.get<Product[]>(this.baseUrl + "products");
     }
 
+    saveProduct(product: Product): Observable<Product> {
+        return this.http.post<Product>(this.baseUrl + "products",
+            product, this.getOptions());
+    }
+
     saveOrder(order: Order): Observable<Order> {
         return this.http.post<Order>(this.baseUrl + "orders", order);
     }
@@ -41,7 +46,7 @@ export class RestDataSource {
             this.getOptions());
     }
 
-    deleteProduct(id: number): Observable<Product> {
+    deleteProduct(id?: number): Observable<Product> {
         return this.http.delete<Product>(`${this.baseUrl}products/${id}`,
             this.getOptions());
     }
@@ -50,7 +55,7 @@ export class RestDataSource {
         return this.http.get<Order[]>(this.baseUrl + "orders", this.getOptions());
     }
 
-    deleteOrder(id: number): Observable<Order> {
+    deleteOrder(id: number | null): Observable<Order> {
         return this.http.delete<Order>(`${this.baseUrl}orders/${id}`,
             this.getOptions());
     }
